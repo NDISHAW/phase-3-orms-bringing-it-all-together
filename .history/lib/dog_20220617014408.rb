@@ -77,11 +77,8 @@ class Dog
   end
 
   def self.find(id)
-    sql = <<-SQL 
-        SELECT * FROM dogs 
-        WHERE dogs.id = ?
-        LIMIT 1;
-    SQL
+    sql = << SQL SELECT * FROM dogs WHERE dogs.id = "?" LIMIT 1;
+    sql
     DB[:conn].execute(sql, id).map do |row|
       self.new_from_db(row)
     end.first
